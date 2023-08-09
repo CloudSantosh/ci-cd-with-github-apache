@@ -29,7 +29,7 @@ The ‘credentials file’ will contain 'aws_access_key_id' and 'aws_secret_acce
 
 Here is a nice article [link](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-2) highlighting how to create it or else create them beforehand on AWS console and reference it in the code.
 
-![App Screenshot](images/flow-tree.png =100x20)
+![App Screenshot](images/flow-tree.png)
 
 For simplicity purpose, we will be using Linux machine for creating Jenkins server and Linux webserver. It’s now time to start using terraform for creating the machines.
 

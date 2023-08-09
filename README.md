@@ -25,7 +25,7 @@ provider "aws" {
 
 The ‘credentials file’ will contain 'aws_access_key_id' and 'aws_secret_access_key'.
 
-- Keep SSH keys handy for server/slave machines.
+- Keep SSH keys handy for jenkins server apache machines.
 
 Here is a nice article [link](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-2) highlighting how to create it or else create them beforehand on AWS console and reference it in the code.
 
@@ -171,3 +171,6 @@ resource "local_file" "save-key" {
 ```bash
 ssh -i <kepair-name.pem> <username>@<public-ip-address>
 ```
+
+# Final result
+![App Screenshot](images/final_result.png)

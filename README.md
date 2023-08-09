@@ -4,9 +4,9 @@ In the ever-evolving landscape of web development, the ability to efficiently de
 
 ![App Screenshot](images/image1.png)
 
-# Deployment
+# Infrastructure Provisioning Using terraform 
 
-Here we first deploy Jenkins server in aws instances where jenkins is installed and webserver instance has apache installed in aws instances. 
+Here we first provision Jenkins server in aws instances where jenkins is installed and webserver instance where apache installed in aws EC2 instances. 
 
 
 ## Terraform
@@ -69,7 +69,7 @@ terraform validate
 terraform apply --auto-approve
 ```
 
-## Steps for jenkins server and Apache webserver
+## Script for jenkins server and Apache webserver
 
 #### Install jenkins on jenkin-server node
 
@@ -100,7 +100,7 @@ sudo systemctl start jenkins
 (This script is on jenkins-server as data.sh and renders on EC2 instance when terraform deploy via command.)
 
 ##### Access URL 
-http://<public IP of Jenkins server>:8080
+###### http://public IP of Jenkins server:8080
 
 We wiil be asked to enter default admin password like below:
 ![App Screenshot](images/password.png)
@@ -134,7 +134,7 @@ sudo systemctl status apache2
 
 ```
 ##### Access URL 
-http://<public IP of apache webserver>
+###### http://public IP of apache webserver
 
 #### Create ssh keys keypair by the modules keypair in the terraform.
 This keypair modules create public key.

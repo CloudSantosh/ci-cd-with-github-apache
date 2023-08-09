@@ -8,5 +8,5 @@
 
 
 sudo apt update -y
-sudo apt install openjdk-17-jre -y
-sudo apt-get update
+sudo apt install apache2 -y
+sudo systemctl status apache2

@@ -47,7 +47,7 @@ The module keypair contains terraform code to create ssh keypair on AWS console.
 
 #### Jenkins-Server
 
-This module contains terraform code to create Jenkins-server.
+This module contains terraform code to create Jenkins-server with jenkins.
 
 #### Webserver
 
@@ -147,7 +147,7 @@ resource "local_file" "save-key" {
 
 (Here ssh keypair is created of both jenkins server instance and apache webserver instances and downloaded in the modules keypair and changes to read only permission on the keypair for security reason.)
 ```bash
-ssh -i kepair-name.pem username@public-ip-address
+ssh -i <kepair-name.pem> <username>@<public-ip-address>
 ```
 
 

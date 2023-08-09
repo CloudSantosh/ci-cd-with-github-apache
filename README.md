@@ -100,7 +100,7 @@ sudo systemctl start jenkins
 (This script is on jenkins-server as data.sh and renders on EC2 instance when terraform deploy via command.)
 
 ##### Access URL 
-<http://public IP of Jenkins server>:8080
+http://<public IP of Jenkins server>:8080
 
 We wiil be asked to enter default admin password like below:
 ![App Screenshot](images/password.png)
@@ -116,6 +116,25 @@ On next screen you can see its asking to install the suggested plugins -
 ![App Screenshot](images/plugins_default.png)
 On the next screen you will be prompted to create jenkins user and finally we will get default Jenkins Dashboard:
 ![App Screenshot](images/jenkins_ready.png)
+
+#### Install Apache on webserver node
+```bash
+#!/bin/bash
+#################################
+# Author: Santosh
+# Date: 8th-August-2023
+# version 1
+# This code install Apache in the ubuntu instances 
+##################################
+
+
+sudo apt update -y
+sudo apt install apache2 -y
+sudo systemctl status apache2
+
+```
+##### Access URL 
+http://<public IP of apache webserver>
 
 #### Create ssh keys keypair by the modules keypair in the terraform.
 This keypair modules create public key.

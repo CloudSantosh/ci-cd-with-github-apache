@@ -134,7 +134,7 @@ sudo systemctl status apache2
 
 ```
 ##### Access URL 
-###### http://public IP of apache webserver
+###### <http:// public IP of apache webserver>
 
 #### Create ssh keys keypair by the modules keypair in the terraform.
 This keypair modules create public key.

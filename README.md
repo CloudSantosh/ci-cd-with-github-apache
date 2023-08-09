@@ -135,8 +135,9 @@ sudo systemctl status apache2
 
 ```
 ##### Access URL 
-###### <http:// public IP of apache webserver>
-
+```bash
+http://<public IP of apache webserver>
+```
 #### Create ssh keys keypair by the modules keypair in the terraform.
 This keypair modules create public key.
 
@@ -170,61 +171,3 @@ resource "local_file" "save-key" {
 ```bash
 ssh -i <kepair-name.pem> <username>@<public-ip-address>
 ```
-
-
-#### Copy keys on master node
-
-In Order to copy the keys on the master use following steps:
-
-- Dashboard
-- Manage Jenkins
-- Credentials
-- System
-- Global Credentials(Unrestricted)
-- Add credentials
-
-![App Screenshot](images/credentials.png)
-
-Final output:
-![App Screenshot](images/credentials_final.png)
-
-#### Join slave node to master
-
-To join the Jenkins slave node to Jenkins Master, perform below steps -
-
-- Select Build Executor Status > **New Node** > **Type** - **Permanent**
-- Name : **jenkins-slave1**
-- Description : **jenkins-slave1**
-- Number of executors : **1**
-- Remote root directory : **/home/ubuntu/slave1**
-- Labels : **jenkins-slave1**
-- Usage : **Use this mode as much as possible**
-- Launch method : **Launch agents via SSH**
-- Host : **<public ip of slave node> e.g. 192.168.0.103**
-- Credentials : **Select the corresponding global credentials key of agents**
-- Host Key Verification Strategy : **manually trusted key verification strategy**
-- Save and check that new slave node is added and is in sync
-
-![App Screenshot](images/nodes.png)
-
-#### Test the setup
-
-- Create **New item**
-- Enter an item name as **Job1**
-- Choose **freestyle project**
-- Select Build as **"Execute shell"** and run echo command - **"Testing Jenkins Master Slave Setup"**
-- Save and run build - **"Build Now"** and Once the build is completed we can check the console output and gets following output
-
-![App Screenshot](images/execution.png)
-
-**Important Note:**
-Jenkins main controller should execute the job for security reasons therefore, it should pass the job to the corresponding slave nodes and it should be used as maintaining information of the job executed. Therefore, its executors should be set to zero.
-
-- Click at master node
-- Configure
-- No. of executors: **0**
-- Labels: **scrambled text i.e. fdkasjfkdsakfjdksaj**
-- Usage: **only build with labels expressions matching this node**
-- Save
-
-![App Screenshot](images/master_node_as_controller.png)

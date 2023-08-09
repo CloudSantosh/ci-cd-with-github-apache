@@ -173,4 +173,4 @@ ssh -i <kepair-name.pem> <username>@<public-ip-address>
 ```
 
 # Final result
-![App Screenshot](images/final_result.png)
+![App Screenshot](images/final-result.png)

@@ -180,9 +180,15 @@ Since private key is downloaed we need to copy the private key into the jenkins 
 
       keypair-cicd.pem                                 100% 3243    23.3KB/s   00:00 
 ```
-Since jenkins servers has its own user and group known as Jenkins. Jenkins stores its file under /var/lib/jenkins/. Therefore, private key of webserver should be store in the path /var/lib/jenkins/
+Since jenkins servers has its own user and group known as Jenkins. Jenkins stores its file under /var/lib/jenkins/. Therefore, private key of webserver should be store in the path /var/lib/jenkins/ because during execution the website contents are to be deployed in the apache webserver from jenkins workspace. 
 Thefore follwing command is stored.  
+```bash
 sudo cp keypair-cicd.pem /var/lib/jenkins/
+
+```
+![App Screenshot](images/changing_owner.png)
+
+
 
 # Final result
 ![App Screenshot](images/final-result.png)

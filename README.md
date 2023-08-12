@@ -219,9 +219,24 @@ steps
 
 ![App Screenshot](images/ssh-server-publisher.png)
 
+# To CI/CD we user Web-hook for automatic actions
+steps
+- Browse github repository
+- Click at settings
+- Click at webhook
+The set following
+![App Screenshot](images/webhook.png)
+
+# Apache webserver
+The folder /var/www/html/ has a default user as root. Therefore, it is supposed to be changed into normal user known. In our case , it ubuntu user.
+![App Screenshot](images/website.png)
 
 
-# Final result
+
+# After deployment of website when build is triggered.
 ![App Screenshot](images/final-result.png)
+
+# Final Result
+![App Screenshot](images/output.png)
 
 

@@ -139,7 +139,7 @@ sudo systemctl status apache2
 http://<public IP of apache webserver>
 ```
 #### Create ssh keys keypair by the modules keypair in the terraform.
-This keypair modules create public key.
+This keypair modules create public key and private key pair at the time of instance booting and private is key downloaded to the user browser whereas public key is saved to the instances under /.ssh/authorized_keys.
 
 ```javascript
 //Create a key with RSA algorithm with 4096 rsa bits
@@ -167,10 +167,15 @@ resource "local_file" "save-key" {
 
 ```
 
+santoshs-MacBook-Pro:keypair santoshji$ scp -i keypair-cicd.pem keypair-cicd.pem ubuntu@52.15.193.9:/home/ubuntu/
+keypair-cicd.pem                                                                   100% 3243    23.3KB/s   00:00 
+
+sudo cp keypair-cicd.pem /var/lib/jenkins/
 (Here ssh keypair is created of both jenkins server instance and apache webserver instances and downloaded in the modules keypair and changes to read only permission on the keypair for security reason.)
 ```bash
 ssh -i <kepair-name.pem> <username>@<public-ip-address>
 ```
+You will need to create a public/private key as the Jenkins user on your Jenkins server, then copy the public key to the user you want to do the deployment with on your target server. In AWS when we were create infrastructure of Jenkins server and apache server, the keypair is generated which private key as .pem extension. and its public key is stored in in /.ssh/authorized_keys. Therefore we ssh to the machine with private key to the servers, they accept the communication. 
 
 # Final result
 ![App Screenshot](images/final-result.png)

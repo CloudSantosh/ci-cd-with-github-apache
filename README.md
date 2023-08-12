@@ -188,7 +188,40 @@ sudo cp keypair-cicd.pem /var/lib/jenkins/
 ```
 ![App Screenshot](images/changing_owner.png)
 
+Then for deploying the website, we use Publish over ssh plugings.
+steps
+- Manage plugins
+- Plugins
+- Choose available plugins
+- Search Publish over ssh
+- Select install
+
+Again to define system server
+steps
+- Manage plugins
+- systems
+ 
+![App Screenshot](images/publish-over-ssh.png)
+![App Screenshot](images/ssh-server.png)
+
+#### Create the job
+steps 
+- Click New item
+- Type name of the item 
+- choose freestyle project
+- Click Ok
+- Select github project and paste urls of repository
+- Select git 
+- Paste xxxxxx.git from github
+- Select github hook trigger from GITScm pooling for webhook
+- Select build steps 
+- Select send files and execute command over ssh
+
+![App Screenshot](images/ssh-server-publisher.png)
+
 
 
 # Final result
 ![App Screenshot](images/final-result.png)
+
+

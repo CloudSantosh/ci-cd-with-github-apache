@@ -174,7 +174,7 @@ ssh -i <kepair-name.pem> <username>@<public-ip-address>
 
 You will need to create a public/private key as the Jenkins user on your Jenkins server, then copy the public key to the user you want to do the deployment with on your target server. In AWS when we were create infrastructure of Jenkins server and apache server, the keypair is generated which private key as .pem extension. and its public key is stored in in /.ssh/authorized_keys. Therefore we ssh to the machine with private key to the servers, they accept the communication. 
 
-Since private key is downloaed we need to copy the private key into the jenkins server. The following command is used to
+Since private key is downloaded we need to copy the private key into the jenkins server. The following command is used to
  ```bash
        scp -i <privatekey.pem> <downloaded-private-key> <username>@<public-ip-address>:<path-of-jenkins-directory>
 ```
@@ -201,7 +201,7 @@ steps
 - Search Publish over ssh
 - Select install
 
-Again to define system server
+#### Again we need to define system server
 steps
 - Manage plugins
 - systems
@@ -218,13 +218,13 @@ steps
 - Select github project and paste urls of repository
 - Select git 
 - Paste xxxxxx.git from github
-- Select github hook trigger from GITScm pooling for webhook
+- Select github hook trigger from GITSCM pooling for webhook
 - Select build steps 
 - Select send files and execute command over ssh
 
 ![App Screenshot](images/ssh-server-publisher.png)
 
-# For CI/CD we user Web-hook for automatic actions
+# For CI/CD we use web-hook for automatic build trigger
 steps
 - Browse github repository
 - Click at settings

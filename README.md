@@ -174,21 +174,26 @@ ssh -i <kepair-name.pem> <username>@<public-ip-address>
 
 You will need to create a public/private key as the Jenkins user on your Jenkins server, then copy the public key to the user you want to do the deployment with on your target server. In AWS when we were create infrastructure of Jenkins server and apache server, the keypair is generated which private key as .pem extension. and its public key is stored in in /.ssh/authorized_keys. Therefore we ssh to the machine with private key to the servers, they accept the communication. 
 
-Since private key is downloaed we need to copy the private key into the jenkins server. The following command is used to 
+Since private key is downloaed we need to copy the private key into the jenkins server. The following command is used to
+ ```bash
+       scp -i <privatekey.pem> <downloaded-private-key> <username>@<public-ip-address>:<path-of-jenkins-directory>
+```
 ```bash
       scp -i keypair-cicd.pem keypair-cicd.pem ubuntu@52.15.193.9:/home/ubuntu/
-
       keypair-cicd.pem                                 100% 3243    23.3KB/s   00:00 
 ```
-Since jenkins servers has its own user and group known as Jenkins. Jenkins stores its file under /var/lib/jenkins/. Therefore, private key of webserver should be store in the path /var/lib/jenkins/ because during execution the website contents are to be deployed in the apache webserver from jenkins workspace. 
-Thefore follwing command is stored.  
+#### Note: Jenkins servers also has its own user and group known as Jenkins. Jenkins stores its file under /var/lib/jenkins/. Therefore, private key of webserver should be store in the path /var/lib/jenkins/ because when pipeline is triggered, jenkins server copies the website contents into the jenkins workspace which are to be deployed in the apache webserver in /var/www/html/ . 
+
+![App Screenshot](images/changing_owner.png)
+
+In order to allow ssh between jenkins server and apache webserver, the private key needs to be stored under jenkins group and user. Therefore following command is copies private key from ubuntu user to location to /var/lib/jenkins/.  
 ```bash
 sudo cp keypair-cicd.pem /var/lib/jenkins/
 
 ```
-![App Screenshot](images/changing_owner.png)
 
-Then for deploying the website, we use Publish over ssh plugings.
+
+#### Then for deploying the website, we use Publish over ssh plugins.
 steps
 - Manage plugins
 - Plugins

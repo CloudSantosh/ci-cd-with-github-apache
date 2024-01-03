@@ -182,6 +182,35 @@ Since private key is downloaded we need to copy the private key into the jenkins
       scp -i keypair-cicd.pem keypair-cicd.pem ubuntu@52.15.193.9:/home/ubuntu/
       keypair-cicd.pem                                 100% 3243    23.3KB/s   00:00 
 ```
+In the above code, privatekey.pem represents keypair to communication with jenkins server from local system whereas downloaded-private-key represents the keypair which needs to be copied. In the following case, both keypair are with same name therefore, this might cause some confusion. Actual scp command is :
+
+ ```bash
+       scp  <file_to_copy>  <username>@<public-ip-address>:<path-of-jenkins-directory>
+```
+This command is using the SCP (Secure Copy Protocol) to copy a file named "keypair-cicd.pem" to a remote server with the IP address 52.15.193.9. Let's break down the command:
+
+- `scp`: The command for secure copy, used to transfer files between a local host and a remote host.
+
+- `-i keypair-cicd.pem`: Specifies the identity file, in this case, "keypair-cicd.pem." This file is typically a private key required for authentication when connecting to the remote server.
+
+- `keypair-cicd.pem`: This is the name of the file you want to copy. In this case, it's being copied from the local machine to the remote server.
+
+- `ubuntu@52.15.193.9:/home/ubuntu/`: Specifies the destination on the remote server. It indicates that the file should be copied to the "/home/ubuntu/" directory on the server, and it's using the username "ubuntu" to connect.
+
+The progress information displayed below the command shows the transfer status:
+
+- `keypair-cicd.pem`: This indicates the name of the file being transferred.
+
+- `100%`: Shows that the transfer is complete.
+
+- `3243`: Represents the size of the file being transferred (in bytes).
+
+- `23.3KB/s`: Indicates the transfer speed.
+
+- `00:00`: Displays the elapsed time for the transfer.
+
+In summary, this SCP command is securely copying the "keypair-cicd.pem" file from the local machine to the "/home/ubuntu/" directory on a remote server with the IP address 52.15.193.9, using the specified private key for authentication.
+
 #### Note: Jenkins servers also has its own user and group known as Jenkins. Jenkins stores its file under /var/lib/jenkins/. Therefore, private key of webserver should be store in the path /var/lib/jenkins/ because when pipeline is triggered, jenkins server copies the website contents into the jenkins workspace which are to be deployed in the apache webserver in /var/www/html/ . 
 
 ![App Screenshot](images/changing_owner.png)
